@@ -25,12 +25,15 @@ export default function usersReducer(state = [], action={}) {
                 likes: 0
             }, ...state];
         case DELETE_COMMENT:
-            //return [{...state, comments: state.filter(comment => comment.id !== action.id)}];
             return state.filter(comment => comment.id !== action.id)          
         case EDIT_COMMENT:
-            return [{ comments: state.find(comment => comment.id === action.id).text = action.text }, ...state];
+            return state.map(comment => {
+                if(comment.id === action.id ) {
+                    return {...comment, text: action.text}
+                }
+            return comment;
+            });
         case LIKE_COMMENT:
-            //return [{ comments: state.find(comment => comment.id === action.id).likes++ }, ...state];
             return state.map(comment => {
                 if(comment.id === action.id) {
                     return { ...comment, likes: comment.likes + 1 }
