@@ -6,13 +6,8 @@ import {
     UNLIKE_COMMENT
 } from './actions';
 
-//INITIAL STATE
-const initialState = {
-    comments: [],
-}
-
 //REDUCER
-export default function usersReducer(state = initialState, action={}) {
+export default function usersReducer(state = [], action={}) {
     switch (action.type) {
         case CREATE_COMMENT:
             return [{
