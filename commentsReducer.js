@@ -16,13 +16,28 @@ export default function usersReducer(state = [], action={}) {
                 likes: 0
             }, ...state];
         case DELETE_COMMENT:
-            return [{ comments: state.comments.filter(comment => comment.id !== action.id) }, ...state];
+            return state.filter(comment => comment.id !== action.id)          
         case EDIT_COMMENT:
-            return [{ comments: state.comments.find(comment => comment.id === action.id).text = action.text }, ...state];
+            return state.map(comment => {
+                if(comment.id === action.id ) {
+                    return {...comment, text: action.text}
+                }
+            return comment;
+            });
         case LIKE_COMMENT:
-            return [{ comments: state.comments.find(comment => comment.id === action.id).likes++ }, ...state];
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return { ...comment, likes: comment.likes + 1 }
+                }
+            return comment;
+            });
         case UNLIKE_COMMENT:
-            return [{ comments: state.comments.find(comment => comment.id === action.id).likes-- }, ...state];    
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return { ...comment, likes: comment.likes - 1 }
+                }
+            return comment;
+            });    
         default:
             return state;
     }
