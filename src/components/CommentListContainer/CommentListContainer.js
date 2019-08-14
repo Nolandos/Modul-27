@@ -5,7 +5,6 @@ import CommentsList from '../CommentsList/CommentsList';
 import { getComments } from '../../redux/commentsReducer';
 
 const mapStateToProps = (state) => {
-    
     return {
         comments: getComments(state)
       };

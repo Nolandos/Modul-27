@@ -1,6 +1,11 @@
 import React from 'react';
-import Comment from '../Comment/Comment';
+import Comment from '../CommentContainer/CommentContainer';
+import NewComment from '../NewComment/NewComment';
 
-const CommentsList = ({comments}) => <ul>{comments.map(comment => <Comment key={comment.id} {...comment}/>)}</ul>;
-//const CommentsList = ({comments}) => <ul></ul>;
+const CommentsList = ({comments}) => 
+<div>
+{console.log(comments)}
+    <ul>{comments.map(comment => <Comment key={comment.id} {...comment}/>)}</ul>
+    <NewComment />
+</div>
 export default CommentsList;
